@@ -50,6 +50,7 @@
     {"id":{"name":"spr_button_run","path":"sprites/spr_button_run/spr_button_run.yy",},},
     {"id":{"name":"spr_enemy1","path":"sprites/spr_enemy1/spr_enemy1.yy",},},
     {"id":{"name":"spr_enemy2","path":"sprites/spr_enemy2/spr_enemy2.yy",},},
+    {"id":{"name":"spr_Jacob","path":"sprites/spr_Jacob/spr_Jacob.yy",},},
     {"id":{"name":"spr_lava","path":"sprites/spr_lava/spr_lava.yy",},},
     {"id":{"name":"spr_npc1","path":"sprites/spr_npc1/spr_npc1.yy",},},
     {"id":{"name":"spr_player_idle_down","path":"sprites/spr_player_idle_down/spr_player_idle_down.yy",},},

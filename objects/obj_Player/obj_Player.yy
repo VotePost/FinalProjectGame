@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_player_idle_right_1",
-    "path":"sprites/spr_player_idle_right_1/spr_player_idle_right_1.yy",
+    "name":"spr_Jacob",
+    "path":"sprites/spr_Jacob/spr_Jacob.yy",
   },
   "spriteMaskId":null,
   "visible":true,

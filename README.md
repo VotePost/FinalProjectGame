@@ -1,2 +1,3 @@
-# FInalProject
+# Final Project for CSCI Game Dev
+
 

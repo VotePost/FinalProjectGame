@@ -1,58 +1,65 @@
-// --- INITIALIZATION CHECK ---
-// Ensures button variables exist if the Create Event was missed.
+// --- INITIALIZATION CHECK (Fixes undefined button_x error) ---
 if (is_undefined(button_x)) {
+    // These values MUST match the drawing in the Draw GUI Event
     button_x = 20;
     button_y = 20;
     button_w = 120;
     button_h = 40;
+    
+    // Ensure state variables exist
+    if (is_undefined(shop_open)) { shop_open = false; }
+    if (is_undefined(menu_index)) { menu_index = 0; }
 }
 
-// Get the mouse coordinates relative to the GUI layer
-// We will use the explicit functions to ensure we get GUI coordinates correctly.
-//var mouse_gui_x = display_mouse_get_gui_x();
-//var mouse_gui_y = display_mouse_get_gui_y();
+// Get the mouse coordinates relative to the GUI layer (Instance Variables)
+mouse_gui_x = device_mouse_x_to_gui(0);
+mouse_gui_y = device_mouse_y_to_gui(0);
 
-// --- Shop Opening Logic (Mouse OR Key Press) ---
+// Check for a left mouse press ONCE per frame
+var left_mouse_pressed = mouse_check_button_pressed(mb_left);
 
-// 1. Check for Key Press (Toggle Shop)
-if (keyboard_check_pressed(ord("I"))) { // Uses the 'I' key to open/close
-    shop_open = !shop_open;
-    exit;
+
+// --- Shop Open/Close Toggles ---
+
+// 1. Keyboard Toggle (Press 'I' for Inventory/Shop)
+if (keyboard_check_pressed(ord("I"))) {
+    shop_open = !shop_open; // Toggle shop open/closed
 }
 
-// 2. Check for Mouse Click (Only works if shop is closed)
-if (!shop_open && mouse_check_button_pressed(mb_left)) {
+// 2. Button Click to Open (Using the reliable 'pressed' check)
+if (!shop_open && left_mouse_pressed) {
     // Check if the GUI-based mouse coordinates are within the button's GUI bounds
     if (mouse_gui_x >= button_x && mouse_gui_x <= button_x + button_w &&
         mouse_gui_y >= button_y && mouse_gui_y <= button_h) {
         
         shop_open = true; // Open the shop!
-        exit; // Prevents the click from selecting an item in the shop on the same frame it opens
+        // IMPORTANT: Exit the event so the same click doesn't immediately select an item
+        // or trigger game logic.
+        exit; 
     }
 }
 
-// --- Shop Closing Logic (Using ESC key for convenience) ---
+// 3. ESC Key to Close
 if (shop_open && keyboard_check_pressed(vk_escape)) {
     shop_open = false;
 }
 
 
-// --- Control Game State ---
+// --- Control Game State & Shop Logic ---
 if (shop_open) {
-    // Deactivate instances when shop is open (pauses the game world)
     instance_deactivate_all(true); 
 
-    // --- GRID Click and Selection Setup ---
+    // --- GRID Click and Selection Logic ---
     
-    // Define the shop_items array here so array_length works in this event.
+    // Define the shop_items array locally
     var shop_items = ["Cozy Couch ($150)", "Desk Lamp ($45)", "Wooden Table ($90)", "King Bed ($500)", "Small Rug ($25)", "Floor Lamp ($30)", "Coffee Table ($60)", "Bookshelf ($120)", "Wall Mirror ($80)"];
     
     // UI Layout Constants (Must match Draw GUI Event)
     var columns = 3;
-    var item_size = 180;
-    var grid_padding_x = 25;
-    var window_w = 650;
-    var window_h = 550;
+    var item_size = 120; // DECREASED: Made individual items smaller
+    var grid_padding_x = 15; // DECREASED: Reduced space between items
+    var window_w = 380; // DECREASED: Smaller overall window width
+    var window_h = 350; // DECREASED: Smaller overall window height
     var gw = display_get_gui_width();
     var gh = display_get_gui_height();
     var cx = gw / 2;
@@ -64,7 +71,7 @@ if (shop_open) {
     
     var max_index = array_length(shop_items) - 1;
 
-    // --- A. Keyboard Navigation (With Grid Wrapping) ---
+    // --- A. Keyboard Navigation ---
     if (keyboard_check_pressed(vk_left)) { 
         menu_index = (menu_index > 0) ? menu_index - 1 : max_index; 
     }
@@ -73,19 +80,18 @@ if (shop_open) {
     }
     if (keyboard_check_pressed(vk_up)) { 
         var new_index = menu_index - columns;
-        // If we move up past the top row (new_index < 0), wrap to the bottom row
         menu_index = (new_index >= 0) ? new_index : menu_index - ((floor(menu_index / columns)) * columns) + max_index - ((floor(max_index / columns)) * columns);
     }
     if (keyboard_check_pressed(vk_down)) { 
         var new_index = menu_index + columns;
-        // If we move down past the bottom row (new_index > max_index), wrap to the top row
         menu_index = (new_index <= max_index) ? new_index : menu_index - ((floor(menu_index / columns)) * columns);
     }
 
     // --- B. Mouse Selection ---
     var item_clicked = -1;
 
-    if (mouse_check_button_pressed(mb_left)) {
+    // Use the single mouse press check for reliable item selection
+    if (left_mouse_pressed) {
         for (var i = 0; i < array_length(shop_items); i++) {
             var col_index = i mod columns;
             var row_index = floor(i / columns);
@@ -100,21 +106,18 @@ if (shop_open) {
                 mouse_gui_y >= item_y1 && mouse_gui_y <= item_y2) {
                 
                 item_clicked = i;
-                break; // Found the clicked item
+                break; // Found the clicked item, stop the loop
             }
         }
     }
     
-    // --- C. Final Selection ---
+    // --- C. Final Selection and Purchase ---
     if (item_clicked != -1) {
         menu_index = item_clicked; // Select the item that was clicked
     }
 
-    if (item_clicked != -1 || keyboard_check_pressed(vk_enter)) {
-        show_debug_message("Item selected: " + shop_items[menu_index]);
-        // Placement logic would go here
-    }
-    
+    // NOTE: Placement logic (room_goto, instance_create) would go here when ready.
+
 } else {
     // If the shop is closed, make sure the game is running
     instance_activate_all();

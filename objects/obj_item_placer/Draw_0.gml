@@ -1,11 +1,23 @@
 // Draw the semi-transparent "ghost" sprite
 draw_set_alpha(0.5);
-draw_sprite(sprite_to_draw, 0, x, y);
+//draw_sprite(sprite_to_draw, 0, x, y);
+// Use draw_sprite_ext to draw the preview with the correct scale
+draw_sprite_ext(sprite_to_draw, 0, x, y, current_scale, current_scale, 0, c_white, 1);
+
 draw_set_alpha(1.0);
 
-// Draw instructions on the GUI layer so they are always visible
+// --- Draw Instructions ---
+var _text = "Left-click to place | Right-click to cancel\nScroll wheel to resize";
 draw_set_halign(fa_center);
-draw_set_valign(fa_top);
+draw_set_valign(fa_bottom);
 draw_set_color(c_white);
-var _text = "Left-click to place\nRight-click to cancel";
-draw_text(display_get_gui_width() / 2, 20, _text);
+
+// Draw a black box behind the text to make it readable
+draw_set_alpha(0.6);
+draw_set_color(c_black);
+draw_rectangle(x - 150, y - 80, x + 150, y - 10, false);
+draw_set_alpha(1.0);
+
+// Draw the instructional text
+draw_set_color(c_white);
+draw_text(x, y - 20, _text);

@@ -51,3 +51,19 @@ else
     sprite_index = spr_idle;
     image_xscale = 1; // <-- ADD THIS to reset flip
 }
+if (y < 18)
+{
+    y = 18;
+}
+if (y > 190)
+{
+	y = 190
+}
+if (x > 470)
+{
+	x = 470
+}
+if (x < 10)
+{
+	x = 10
+}

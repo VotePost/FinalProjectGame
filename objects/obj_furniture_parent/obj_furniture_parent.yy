@@ -1,18 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"obj_clock",
+  "%Name":"obj_furniture_parent",
   "eventList":[],
   "managed":true,
-  "name":"obj_clock",
+  "name":"obj_furniture_parent",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",
   },
-  "parentObjectId":{
-    "name":"obj_furniture_parent",
-    "path":"objects/obj_furniture_parent/obj_furniture_parent.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +27,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_clock",
-    "path":"sprites/spr_clock/spr_clock.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

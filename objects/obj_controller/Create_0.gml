@@ -24,3 +24,4 @@ surface_resize(application_surface, window_width, window_height);
 window_center();
 global.coins = 50;
 global.paused = false;
+LoadGame();

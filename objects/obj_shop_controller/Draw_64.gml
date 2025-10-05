@@ -1,3 +1,4 @@
+if (room != Room1) { return; }
 // If we are in placement mode, draw nothing from the shop.
 if (placement_mode) {
     return; 

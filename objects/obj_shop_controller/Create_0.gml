@@ -1,4 +1,5 @@
 global.shop = id; // Store this specific instance's ID in a global variable
+request_save = false;
 // --- Shop State ---
 shop_open = false;
 placement_mode = false;

@@ -1,3 +1,5 @@
+if (room != Room1) { return; }
+
 // Get mouse position on the GUI
 var _mouse_gui_x = device_mouse_x_to_gui(0);
 var _mouse_gui_y = device_mouse_y_to_gui(0);
@@ -81,4 +83,9 @@ if (!placement_mode) {
             }
         }
     }
+}
+// Check if a save has been requested by the pause menu
+if (request_save) {
+    SaveGame(); // Run the save script
+    request_save = false; // Reset the flag so it doesn't save again
 }

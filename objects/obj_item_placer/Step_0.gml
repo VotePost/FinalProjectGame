@@ -15,6 +15,7 @@ if (current_scale < 0.1) {
 
 // --- CONFIRM PLACEMENT (Left-Click) ---
 if (mouse_check_button_pressed(mb_left)) {
+	global.coins -= item_price;
     // Create the final object and store its ID
     var _inst = instance_create_layer(x, y, "Instances", object_to_place);
 

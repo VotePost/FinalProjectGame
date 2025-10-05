@@ -20,10 +20,14 @@ if (!placement_mode) {
     if (shop_open) {
         instance_deactivate_all(true); // Pause the game
         
+        // --- PURCHASE LOGIC ---
+        // First, check if the mouse was clicked at all
         if (_left_mouse_pressed) {
+            
+            // Initialize a temporary variable to track the click
             var _item_clicked = -1;
 
-            // Check if the click is on an item
+            // Second, loop through all items to see if one was clicked
             for (var i = 0; i < array_length(shop_items); i++) {
                 var _col = i mod columns;
                 var _row = floor(i / columns);
@@ -34,25 +38,34 @@ if (!placement_mode) {
 
                 if (_mouse_gui_x > _item_x1 && _mouse_gui_x < _item_x2 &&
                     _mouse_gui_y > _item_y1 && _mouse_gui_y < _item_y2) {
-                    _item_clicked = i;
+                    _item_clicked = i; // We found the clicked item!
                     break;
                 }
             }
 
-            // If an item was clicked, enter placement mode
+            // Finally, if an item was successfully clicked, proceed with the purchase
             if (_item_clicked != -1) {
-                menu_index = _item_clicked;
-                placement_mode = true;
-                shop_open = false;
-
-                var _item_data = shop_items[menu_index];
-                var _placer = instance_create_layer(mouse_x, mouse_y, "Instances", obj_item_placer);
-                _placer.object_to_place = _item_data.object;
-                _placer.sprite_to_draw = _item_data.sprite;
+                var _item_data = shop_items[_item_clicked];
+    
+                // Check if player can afford it
+                if (global.coins >= _item_data.price) {
+                   
+                    menu_index = _item_clicked;
+                    placement_mode = true;
+                    shop_open = false;
+                    instance_activate_all();
+                    
+                    var _placer = instance_create_layer(mouse_x, mouse_y, "Instances", obj_item_placer);
+                    _placer.object_to_place = _item_data.object;
+                    _placer.sprite_to_draw = _item_data.sprite;
+					_placer.item_price = _item_data.price;
+                } else{ //can't afford
+				}
             }
         }
     }
-    else { // Logic for when the shop is CLOSED
+    // --- LOGIC FOR WHEN SHOP IS CLOSED ---
+    else {
         instance_activate_all(); // Un-pause the game
         
         // Check for a click on the "Open Shop" button

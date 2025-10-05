@@ -1,26 +1,11 @@
-// Make the ghost object follow the mouse
-x = mouse_x;
-y = mouse_y;
+// Draw the semi-transparent "ghost" sprite
+draw_set_alpha(0.5);
+draw_sprite(sprite_to_draw, 0, x, y);
+draw_set_alpha(1.0);
 
-// --- PLACE ITEM ---
-// On left-click, create the permanent item and exit placement mode.
-if (mouse_check_button_pressed(mb_left)) {
-    // Create the final object at the current position
-    instance_create_layer(x, y, "Instances", object_to_place);
-
-    // Tell the shop controller that placement is finished
-    obj_Shop.placement_mode = false;
-    
-    // Destroy this temporary ghost object
-    instance_destroy();
-}
-
-// --- CANCEL PLACEMENT ---
-// On right-click, cancel the placement.
-if (mouse_check_button_pressed(mb_right)) {
-    // Tell the shop controller that placement is finished
-    obj_Shop.placement_mode = false;
-
-    // Destroy this temporary ghost object without placing anything
-    instance_destroy();
-}
+// Draw instructions on the GUI layer so they are always visible
+draw_set_halign(fa_center);
+draw_set_valign(fa_top);
+draw_set_color(c_white);
+var _text = "Left-click to place\nRight-click to cancel";
+draw_text(display_get_gui_width() / 2, 20, _text);

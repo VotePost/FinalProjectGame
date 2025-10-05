@@ -2,25 +2,15 @@
 x = mouse_x;
 y = mouse_y;
 
-// --- PLACE ITEM ---
-// On left-click, create the permanent item and exit placement mode.
+// --- Confirm Placement (Left-Click) ---
 if (mouse_check_button_pressed(mb_left)) {
-    // Create the final object at the current position
     instance_create_layer(x, y, "Instances", object_to_place);
-
-    // Tell the shop controller that placement is finished
-    obj_Shop.placement_mode = false;
-    
-    // Destroy this temporary ghost object
+    global.shop.placement_mode = false;
     instance_destroy();
 }
 
-// --- CANCEL PLACEMENT ---
-// On right-click, cancel the placement.
+// --- Cancel Placement (Right-Click) ---
 if (mouse_check_button_pressed(mb_right)) {
-    // Tell the shop controller that placement is finished
-    obj_Shop.placement_mode = false;
-
-    // Destroy this temporary ghost object without placing anything
+    global.shop.placement_mode = false;
     instance_destroy();
 }

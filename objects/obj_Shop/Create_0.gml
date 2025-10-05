@@ -1,15 +1,10 @@
+global.shop = id; // Store this specific instance's ID in a global variable
 // --- Shop State ---
 shop_open = false;
-menu_index = 0; // Tracks the currently selected item
-
-// --- Shop Button GUI ---
-button_x = 20;
-button_y = 20;
-button_w = 140;
-button_h = 40;
+placement_mode = false;
+menu_index = 0;
 
 // --- Shop Window GUI ---
-// Center the window on the screen
 var _gw = display_get_gui_width();
 var _gh = display_get_gui_height();
 var _window_w = 480;
@@ -22,24 +17,17 @@ window_h = _window_h;
 
 // --- Shop Grid GUI ---
 columns = 3;
-item_size = 100; // The width and height of each item's box
-grid_padding = 20; // Space between items
-
-// Calculate where the grid starts inside the window
+item_size = 100;
+grid_padding = 20;
 grid_start_x = window_x + 40;
 grid_start_y = window_y + 80;
 
-// --- Shop Items (Using Structs) ---
+// --- Define All Your Shop Items Here ---
 shop_items = [
-    { name: "Cozy Couch", price: 150, sprite: spr_placeholder },
-    { name: "Desk Lamp", price: 45, sprite: spr_placeholder },
-    { name: "Wooden Table", price: 90, sprite: spr_placeholder },
-    { name: "King Bed", price: 500, sprite: spr_placeholder },
-    { name: "Small Rug", price: 25, sprite: spr_placeholder },
-    { name: "Floor Lamp", price: 30, sprite: spr_placeholder },
-    { name: "Coffee Table", price: 60, sprite: spr_placeholder },
-    { name: "Bookshelf", price: 120, sprite: spr_placeholder }
+    { name: "Couch",   price: 150, sprite: spr_couch,   object: obj_couch },
+    { name: "Chair",   price: 50,  sprite: spr_chair,   object: obj_chair },
+    { name: "Piano",   price: 300, sprite: spr_piano,   object: obj_piano },
+    { name: "Cabinet", price: 120, sprite: spr_cabinet, object: obj_cabinet },
+    { name: "Clock",   price: 75,  sprite: spr_clock,   object: obj_clock },
+    { name: "Window",  price: 100, sprite: spr_window,  object: obj_window }
 ];
-
-
-placement_mode = false;

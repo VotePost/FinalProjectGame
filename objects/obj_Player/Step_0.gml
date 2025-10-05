@@ -14,11 +14,11 @@
 //{
 //    y = y + 2;
 //}
-// ## 1. Get Player Input
-var key_left = keyboard_check(ord("A"));
-var key_right = keyboard_check(ord("D"));
-var key_up = keyboard_check(ord("W"));
-var key_down = keyboard_check(ord("S"));
+// ## 1. Get Player Input (WASD or Arrow Keys)
+var key_left = keyboard_check(ord("A")) || keyboard_check(vk_left);
+var key_right = keyboard_check(ord("D")) || keyboard_check(vk_right);
+var key_up = keyboard_check(ord("W")) || keyboard_check(vk_up);
+var key_down = keyboard_check(ord("S")) || keyboard_check(vk_down);
 
 // ## 2. Calculate Movement
 if (key_up)

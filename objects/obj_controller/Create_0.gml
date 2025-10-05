@@ -23,3 +23,4 @@ surface_resize(application_surface, window_width, window_height);
 // ## 7. Center the window on the screen
 window_center();
 global.coins = 50;
+global.paused = false;

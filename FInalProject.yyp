@@ -48,6 +48,7 @@
     {"id":{"name":"obj_couch","path":"objects/obj_couch/obj_couch.yy",},},
     {"id":{"name":"obj_item_placer","path":"objects/obj_item_placer/obj_item_placer.yy",},},
     {"id":{"name":"obj_Menu","path":"objects/obj_Menu/obj_Menu.yy",},},
+    {"id":{"name":"obj_pause_menu","path":"objects/obj_pause_menu/obj_pause_menu.yy",},},
     {"id":{"name":"obj_piano","path":"objects/obj_piano/obj_piano.yy",},},
     {"id":{"name":"obj_place_effect","path":"objects/obj_place_effect/obj_place_effect.yy",},},
     {"id":{"name":"obj_placeholderitem","path":"objects/obj_placeholderitem/obj_placeholderitem.yy",},},

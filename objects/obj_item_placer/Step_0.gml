@@ -21,7 +21,7 @@ if (mouse_check_button_pressed(mb_left)) {
     // Pass the final scale to the new instance
     _inst.image_xscale = current_scale;
     _inst.image_yscale = current_scale;
-
+	instance_create_layer(x, y, "Effects", obj_place_effect);
     // Tell the shop we are done placing
     global.shop.placement_mode = false;
     

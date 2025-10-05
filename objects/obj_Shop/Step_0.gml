@@ -16,8 +16,10 @@ if (!placement_mode) {
         shop_open = false;
     }
 
+    // --- LOGIC FOR WHEN SHOP IS OPEN ---
     if (shop_open) {
-        // --- PURCHASE ITEM ---
+        instance_deactivate_all(true); // Pause the game
+        
         if (_left_mouse_pressed) {
             var _item_clicked = -1;
 
@@ -37,6 +39,7 @@ if (!placement_mode) {
                 }
             }
 
+            // If an item was clicked, enter placement mode
             if (_item_clicked != -1) {
                 menu_index = _item_clicked;
                 placement_mode = true;
@@ -46,6 +49,22 @@ if (!placement_mode) {
                 var _placer = instance_create_layer(mouse_x, mouse_y, "Instances", obj_item_placer);
                 _placer.object_to_place = _item_data.object;
                 _placer.sprite_to_draw = _item_data.sprite;
+            }
+        }
+    }
+    else { // Logic for when the shop is CLOSED
+        instance_activate_all(); // Un-pause the game
+        
+        // Check for a click on the "Open Shop" button
+        if (_left_mouse_pressed) {
+            var _button_x = 20;
+            var _button_y = 20;
+            var _button_w = 140;
+            var _button_h = 40;
+            
+            if (_mouse_gui_x >= _button_x && _mouse_gui_x <= _button_x + _button_w &&
+                _mouse_gui_y >= _button_y && _mouse_gui_y <= _button_y + _button_h) {
+                shop_open = true;
             }
         }
     }

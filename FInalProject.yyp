@@ -38,6 +38,7 @@
   "resources":[
     {"id":{"name":"fnt_shop_item","path":"fonts/fnt_shop_item/fnt_shop_item.yy",},},
     {"id":{"name":"fnt_shop_title","path":"fonts/fnt_shop_title/fnt_shop_title.yy",},},
+    {"id":{"name":"Font3","path":"fonts/Font3/Font3.yy",},},
     {"id":{"name":"ReadMe","path":"notes/ReadMe/ReadMe.yy",},},
     {"id":{"name":"obj_cabinet","path":"objects/obj_cabinet/obj_cabinet.yy",},},
     {"id":{"name":"obj_chair","path":"objects/obj_chair/obj_chair.yy",},},

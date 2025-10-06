@@ -1,12 +1,9 @@
-// The function now accepts the placement_mode state as an argument
 function SaveGame() {
+    // 1. You MUST open the file before you can write to it.
     ini_open("savedata.ini");
-	var save_path = "save.ini";
-	ini_open(save_path);
 
-    // --- Save Player and Shop State ---
+    // 2. Now you can write data.
     ini_write_real("PlayerData", "coins", global.coins);
-    // It now saves the value that was passed into it
     ini_write_bool("PlayerData", "placementMode", false);
     
     // --- Save Placed Objects ---
@@ -22,6 +19,7 @@ function SaveGame() {
         ini_write_real("PlacedObjects", "scale" + string(i), _inst.image_xscale);
     }
 
+    // 3. Close the file to finalize the save.
     ini_close();
     show_debug_message("--- Game Saved! ---");
 }

@@ -60,7 +60,7 @@
     {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"LoadGame","path":"scripts/LoadGame/LoadGame.yy",},},
-    {"id":{"name":"SaveGame","path":"scripts/SaveGame/SaveGame.yy",},},
+    {"id":{"name":"SaveGameData","path":"scripts/SaveGameData/SaveGameData.yy",},},
     {"id":{"name":"bgsprite","path":"sprites/bgsprite/bgsprite.yy",},},
     {"id":{"name":"spr_battle_screen","path":"sprites/spr_battle_screen/spr_battle_screen.yy",},},
     {"id":{"name":"spr_box","path":"sprites/spr_box/spr_box.yy",},},

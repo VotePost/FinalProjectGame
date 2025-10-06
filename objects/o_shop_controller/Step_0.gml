@@ -87,7 +87,7 @@ if (!placement_mode) {
 // Check if a save has been requested by the pause menu
 if (request_save) {
     // Call the SaveGame script and pass this object's own placement_mode variable
-    SaveGame();
+    SaveGameData();
     
     request_save = false; // Reset the flag
 }

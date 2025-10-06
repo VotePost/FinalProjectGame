@@ -1,17 +1,18 @@
+// The function now accepts the placement_mode state as an argument
 function SaveGame() {
     ini_open("savedata.ini");
+	var save_path = "save.ini";
+	ini_open(save_path);
 
     // --- Save Player and Shop State ---
     ini_write_real("PlayerData", "coins", global.coins);
-    ini_write_bool("PlayerData", "placementMode", global.shop.placement_mode);
-    show_debug_message("Saving " + string(global.coins) + " coins.");
+    // It now saves the value that was passed into it
+    ini_write_bool("PlayerData", "placementMode", false);
     
     // --- Save Placed Objects ---
     var _count = instance_number(obj_furniture_parent);
     ini_write_real("PlacedObjects", "count", _count);
-    show_debug_message("Found " + string(_count) + " furniture items to save.");
 
-    // Loop through every piece of furniture and save its data
     for (var i = 0; i < _count; i++) {
         var _inst = instance_find(obj_furniture_parent, i);
         

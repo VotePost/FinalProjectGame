@@ -1,15 +1,14 @@
+// In obj_controller's STEP EVENT
+
 // Check for the pause key press
 if (keyboard_check_pressed(vk_escape)) {
-    // Check if the game is already paused
+    // Toggle the paused state
+    global.paused = !global.paused;
+
+    // If we just paused, create the menu. If we just unpaused, destroy it.
     if (global.paused) {
-        // --- UNPAUSE THE GAME ---
-        global.paused = false;
-        instance_activate_all(); // Un-freeze everything
-        instance_destroy(obj_pause_menu); // Destroy the menu
+        instance_create_layer(0, 0, "Instances", obj_pause_menu);
     } else {
-        // --- PAUSE THE GAME ---
-        global.paused = true;
-        instance_deactivate_all(true); // Freeze everything except this object
-        instance_create_layer(0, 0, "Instances", obj_pause_menu); // Create the menu
+        instance_destroy(obj_pause_menu);
     }
 }

@@ -1,10 +1,10 @@
 global.shop = id; // Store this specific instance's ID in a global variable
-request_save = false;
+
 // --- Shop State ---
 shop_open = false;
 placement_mode = false;
 menu_index = 0;
-
+request_save = false;
 // --- Shop Window GUI ---
 var _gw = display_get_gui_width();
 var _gh = display_get_gui_height();
@@ -25,10 +25,10 @@ grid_start_y = window_y + 80;
 
 // --- Define All Your Shop Items Here ---
 shop_items = [
-    { name: "Couch",   price: 150, sprite: spr_couch,   object: obj_couch },
-    { name: "Chair",   price: 50,  sprite: spr_chair,   object: obj_chair },
-    { name: "Piano",   price: 300, sprite: spr_piano,   object: obj_piano },
-    { name: "Cabinet", price: 120, sprite: spr_cabinet, object: obj_cabinet },
+    { name: "Couch",   price: 100, sprite: spr_couch,   object: obj_couch },
+    { name: "Chair",   price: 25,  sprite: spr_chair,   object: obj_chair },
+    { name: "Piano",   price: 250, sprite: spr_piano,   object: obj_piano },
+    { name: "Cabinet", price: 100, sprite: spr_cabinet, object: obj_cabinet },
     { name: "Clock",   price: 75,  sprite: spr_clock,   object: obj_clock },
-    { name: "Window",  price: 100, sprite: spr_window,  object: obj_window }
+    { name: "Window",  price: 200, sprite: spr_window,  object: obj_window }
 ];

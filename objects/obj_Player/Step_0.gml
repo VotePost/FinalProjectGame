@@ -14,6 +14,7 @@
 //{
 //    y = y + 2;
 //}
+if (global.paused) { return; }
 // ## 1. Get Player Input (WASD or Arrow Keys)
 var key_left = keyboard_check(ord("A")) || keyboard_check(vk_left);
 var key_right = keyboard_check(ord("D")) || keyboard_check(vk_right);

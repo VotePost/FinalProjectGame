@@ -30,5 +30,6 @@ shop_items = [
     { name: "Piano",   price: 250, sprite: spr_piano,   object: obj_piano },
     { name: "Cabinet", price: 100, sprite: spr_cabinet, object: obj_cabinet },
     { name: "Clock",   price: 75,  sprite: spr_clock,   object: obj_clock },
-    { name: "Window",  price: 200, sprite: spr_window,  object: obj_window }
+    { name: "Window",  price: 200, sprite: spr_window,  object: obj_window },
+	{ name: "Carpet", price: 10, sprite: spr_carpet, object: obj_carpet}
 ];

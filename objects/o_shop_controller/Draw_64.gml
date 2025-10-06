@@ -1,11 +1,15 @@
 if (room != Room1) { return; }
-// If we are in placement mode, draw nothing from the shop.
-if (placement_mode) {
-    return; 
-}
+if (placement_mode) { return; }
 
-// If the shop is open, draw the full interface.
 if (shop_open) {
+    // --- Center the shop panel and grid ---
+    window_w = 520; // panel width
+    window_h = 340; // panel height
+    window_x = (display_get_gui_width() / 2) - (window_w / 2);
+    window_y = (display_get_gui_height() / 2) - (window_h / 2);
+    grid_start_x = window_x + 40;
+    grid_start_y = window_y + 80;
+
     // --- Draw Dimming Overlay ---
     draw_set_alpha(0.5);
     draw_set_color(c_black);
@@ -40,14 +44,14 @@ if (shop_open) {
         draw_text(_item_x + item_size / 2, _item_y + item_size - 20, _text);
     }
 } 
-// If the shop is closed, draw the "Open Shop" button.
+// Shop button code stays the same
 else {
     var _button_x = 20;
     var _button_y = 20;
     var _button_w = 140;
     var _button_h = 40;
-	draw_set_color(c_dkgray);
-	draw_rectangle(_button_x, _button_y, _button_x + _button_w, _button_y + _button_h, false);
+    draw_set_color(c_dkgray);
+    draw_rectangle(_button_x, _button_y, _button_x + _button_w, _button_y + _button_h, false);
 
     // Draw the button background and text
     draw_set_halign(fa_center);

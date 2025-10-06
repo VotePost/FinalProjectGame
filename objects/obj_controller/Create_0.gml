@@ -25,3 +25,4 @@ window_center();
 global.coins = 50;
 global.paused = false;
 LoadGame();
+global.reset_room = false;

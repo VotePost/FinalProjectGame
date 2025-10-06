@@ -8,8 +8,15 @@ draw_set_alpha(1.0);
 var _cx = display_get_gui_width() / 2;
 var _cy = display_get_gui_height() / 2;
 var _button_w = 200;
-var _button_h = 50; // Semicolon is important!
+var _button_h = 50; 
 
+var _reset_x1 = _cx - (_button_w / 2);
+var _reset_y1 = _cy + 200;
+
+// Now you can safely draw the button:
+draw_set_color(c_white);
+draw_rectangle(_reset_x1, _reset_y1, _reset_x1 + _button_w, _reset_y1 + _button_h, false);
+draw_text(_reset_x1 + _button_w/2, _reset_y1 + _button_h/2, "Reset Room");
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_color(c_white);
@@ -52,3 +59,7 @@ if (show_save_message) {
     draw_set_color(c_white);
     draw_text(_cx, _y + (_box_h / 2), "Saving...");
 }
+draw_set_color(c_dkgray);
+draw_rectangle(_reset_x1, _reset_y1, _reset_x1 + _button_w, _reset_y1 + _button_h, false);
+draw_set_color(c_white);
+draw_text(_reset_x1 + _button_w/2, _reset_y1 + _button_h/2, "Reset Room");

@@ -5,3 +5,4 @@ item_price = 0;
 flip_x = 1;
 #macro vk_lbracket 219
 #macro vk_rbracket 221
+ghost_color = c_white;

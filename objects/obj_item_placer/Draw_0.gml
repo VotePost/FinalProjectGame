@@ -18,4 +18,5 @@ draw_set_alpha(1.0);
 
 // Draw the instructional text
 draw_set_color(c_white);
-draw_text(x, y - 0, _text);
+var text_width = 300; // Set this to the width of your box minus some padding
+draw_text_ext(x, y - 15, _text, -1, text_width);

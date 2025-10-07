@@ -17,7 +17,7 @@ window_w = _window_w;
 window_h = _window_h;
 
 // --- Shop Grid GUI ---
-columns = 3;
+columns = 4;
 item_size = 100;
 grid_padding = 20;
 grid_start_x = window_x + 40;

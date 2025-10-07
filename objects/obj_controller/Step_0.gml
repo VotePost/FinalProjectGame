@@ -14,6 +14,10 @@ if (keyboard_check_pressed(vk_escape)) {
 }
 if (global.reset_room) {
     with (obj_furniture_parent) { instance_destroy(); }
+	with (obj_carpet) {
+		instance_destroy();}
+	with (obj_window) {
+		instance_destroy();}
     // Optionally restore coins, respawn defaults, etc.
     global.reset_room = false;
 }

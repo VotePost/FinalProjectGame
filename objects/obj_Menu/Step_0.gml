@@ -1,6 +1,6 @@
 // Menu options
 if (!variable_global_exists("menu_options")) {
-    global.menu_options = ["Play", "Options", "Quit"];
+    global.menu_options = ["Play", "Reset Save", "Quit"];
     global.menu_index = 0;
 }
 
@@ -54,8 +54,20 @@ if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(ord(" "))) {
 
 if (select) {
     switch (global.menu_index) {
-        case 0: room_goto(Room1); break;      // Replace Room1 with your actual play room
-        case 1: room_goto(rm_options); break; // Replace rm_options with your options room
-        case 2: game_end(); break;
+        case 0:
+            room_goto(Room1); // Your play room
+            break;
+        case 1:
+    if (show_question("Are you sure you want to reset all save data?")) {
+        if (file_exists("save.ini")) {
+            file_delete("save.ini");
+        }
+        show_message("Save data has been reset!\nThe game will now restart.");
+        game_restart();
+    }
+    break;
+        case 2:
+            game_end();
+            break;
     }
 }

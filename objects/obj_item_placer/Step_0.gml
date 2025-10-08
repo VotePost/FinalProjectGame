@@ -1,8 +1,8 @@
-// --- Window vertical placement bounds ---
+// --- Placement bounds for windows ---
 var min_y = 17;
 var max_y = 60;
 
-// Follow mouse
+// --- Track mouse for placer ---
 x = mouse_x;
 y = mouse_y;
 
@@ -26,7 +26,7 @@ var box_bottom = y + (spr_h * current_scale) / 2;
 
 // --- Placement permission ---
 if (object_to_place == obj_window) {
-    can_place = (mouse_y >= min_y) && (mouse_y <= max_y);
+    can_place = (y >= min_y) && (y <= max_y);
 } else {
     can_place = !collision_rectangle(box_left, box_top, box_right, box_bottom, obj_furniture_parent, false, false);
 }
@@ -39,10 +39,18 @@ image_yscale = current_scale;
 // --- CONFIRM PLACEMENT (Left-Click) ---
 if (mouse_check_button_pressed(mb_left) && can_place) {
     global.coins -= item_price;
-    var _inst = instance_create_layer(x, y, "Instances", object_to_place);
+    var place_x = x;
+    var place_y = y;
+
+    // For windows, clamp y just in case (should be in bounds already, but this is bulletproof)
+    if (object_to_place == obj_window) {
+        place_y = clamp(place_y, min_y, max_y);
+    }
+
+    var _inst = instance_create_layer(place_x, place_y, "Instances", object_to_place);
     _inst.image_xscale = image_xscale;
     _inst.image_yscale = image_yscale;
-    instance_create_layer(x, y, "Effects", obj_place_effect);
+    instance_create_layer(place_x, place_y, "Effects", obj_place_effect);
     global.shop.placement_mode = false;
     instance_destroy();
 }
@@ -58,12 +66,12 @@ draw_set_alpha(0.5);
 draw_sprite_ext(sprite_to_draw, 0, x, y, current_scale * flip_x, current_scale, 0, ghost_color, 1);
 draw_set_alpha(1.0);
 
-// --- Draw Instructions (unchanged) ---
+// --- Draw Instructions ---
 var _text = "Left-click to place | Right-click to cancel\nScroll wheel or [ and ] to resize | F to flip";
 draw_set_halign(fa_center);
 draw_set_valign(fa_bottom);
-draw_set_color(c_white);
 draw_set_font(Font3);
+draw_set_color(c_white);
 
 // Draw a black box behind the text to make it readable
 draw_set_alpha(0.6);
@@ -71,6 +79,6 @@ draw_set_color(c_black);
 draw_rectangle(x - 120, y - 55, x + 120, y - 10, false);
 draw_set_alpha(1.0);
 
-// Draw the instructional text
+// Draw the instructional text, using draw_text_ext for wrapping
 draw_set_color(c_white);
-draw_text(x, y - 0, _text);
+draw_text_ext(x, y - 0, _text, -1, 220);

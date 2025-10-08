@@ -22,7 +22,7 @@ surface_resize(application_surface, window_width, window_height);
 
 // ## 7. Center the window on the screen
 window_center();
-global.coins = 150;
+global.coins = 0;
 global.paused = false;
 LoadGame();
 global.reset_room = false;

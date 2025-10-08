@@ -64,6 +64,7 @@
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"LoadGame","path":"scripts/LoadGame/LoadGame.yy",},},
     {"id":{"name":"SaveGameData","path":"scripts/SaveGameData/SaveGameData.yy",},},
+    {"id":{"name":"snd_coin","path":"sounds/snd_coin/snd_coin.yy",},},
     {"id":{"name":"bgsprite","path":"sprites/bgsprite/bgsprite.yy",},},
     {"id":{"name":"spr_battle_screen","path":"sprites/spr_battle_screen/spr_battle_screen.yy",},},
     {"id":{"name":"spr_bed","path":"sprites/spr_bed/spr_bed.yy",},},

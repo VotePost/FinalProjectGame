@@ -59,8 +59,8 @@ if (select) {
             break;
         case 1:
     if (show_question("Are you sure you want to reset all save data?")) {
-        if (file_exists("save.ini")) {
-            file_delete("save.ini");
+        if (file_exists("savedata.ini")) {
+            file_delete("savedata.ini");
         }
         show_message("Save data has been reset!\nThe game will now restart.");
         game_restart();

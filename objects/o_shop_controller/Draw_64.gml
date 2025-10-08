@@ -60,3 +60,21 @@ else {
     draw_set_color(c_white);
     draw_text(_button_x + _button_w / 2, _button_y + _button_h / 2, "Shop [I]");
 }
+if (insufficient_funds_timer > 0) {
+    var popup_x = display_get_gui_width() / 2;
+    var popup_y = window_y + window_h + 40; // just below the shop window
+
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_color(c_red);
+
+    // Draw a background box for the message
+    draw_set_alpha(0.8);
+    draw_set_color(c_black);
+    draw_rectangle(popup_x - 180, popup_y - 40, popup_x + 180, popup_y + 40, false);
+    draw_set_alpha(1);
+
+    // Draw message text
+    draw_set_color(c_orange);
+    draw_text(popup_x, popup_y, insufficient_funds_message);
+}

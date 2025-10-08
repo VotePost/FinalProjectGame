@@ -34,3 +34,6 @@ shop_items = [
 	{ name: "Carpet", price: 10, sprite: spr_carpet, object: obj_carpet},
 	{ name: "Bed", price: 200, sprite: spr_bed, object: obj_bed}
 ];
+// Popup state
+insufficient_funds_timer = 0;
+insufficient_funds_message = "";

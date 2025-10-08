@@ -61,11 +61,16 @@ if (!placement_mode) {
                     _placer.object_to_place = _item_data.object;
                     _placer.sprite_to_draw = _item_data.sprite;
 					_placer.item_price = _item_data.price;
-                } else{ //can't afford
-				}
+                } else { //can't afford
+    insufficient_funds_message = "Insufficient funds!\nClick the clicker to earn more coins.";
+    insufficient_funds_timer = 90; // show for 1.5 seconds (60 steps = 1 second)
+}
             }
         }
     }
+	if (insufficient_funds_timer > 0) {
+    insufficient_funds_timer--;
+}
     // --- LOGIC FOR WHEN SHOP IS CLOSED ---
     else {
         instance_activate_all(); // Un-pause the game
